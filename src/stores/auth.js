@@ -16,6 +16,11 @@ export const useAuthStore = defineStore('auth', () => {
         persistUser()
     }
 
+    function setUserEmail(email) {
+        user.value.email = email
+        persistUser()
+    }
+
     function LoginUser(data) {
 
       return Api.post('auth/login',data)
@@ -26,5 +31,5 @@ export const useAuthStore = defineStore('auth', () => {
 
     }
 
-    return { user, isAuthenticated, setAuthToken, LoginUser}
+    return { user, isAuthenticated, setAuthToken, LoginUser, setUserEmail}
 })

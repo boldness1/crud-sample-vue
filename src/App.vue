@@ -22,16 +22,23 @@ const logoutUser = () => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="80" height="80" />
 
     <div class="d-flex flex-row">
+
       <nav>
-      <div class="d-flex justify-content-around">
-        <div class="d-flex">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/users">Users</RouterLink>
-        </div>
-        <div>
-          <a href="#" @click="logoutUser()" v-if="authStore.isAuthenticated">Logout</a>
-          <a href="#" @click="router.push({name:'login'})"  v-else >Login</a>
-        </div>
+        <div class="d-flex flex-column">
+          <span class="d-flex">   {{authStore.user.email}}</span>
+          <div class="d-flex justify-content-around">
+
+            <div class="d-flex">
+              <RouterLink to="/">Home</RouterLink>
+              <RouterLink to="/users">Users</RouterLink>
+            </div>
+            <div>
+              <a href="#" @click="logoutUser()" v-if="authStore.isAuthenticated">Logout</a>
+              <a href="#" @click="router.push({name:'login'})"  v-else >Login</a>
+            </div>
+
+          </div>
+
       </div>
       </nav>
     </div>

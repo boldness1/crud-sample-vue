@@ -19,7 +19,7 @@ const loginUser = async () => {
   const password = userPassword.value
 
   authStore.LoginUser({email,password}).then(resp => {
-
+    console.log(resp.data)
     if(resp.data.errors && resp.data.errors.length || resp.data.error) {
       errors.value = resp.data.errors ?? [resp.data.message]
 
@@ -28,6 +28,7 @@ const loginUser = async () => {
 
     if(resp.data.access_token) {
       authStore.setAuthToken(resp.data.access_token)
+      authStore.setUserEmail(resp.data.user_info.email)
       Api.setToken(resp.data.access_token)
       router.push({name:"users"})
     }
@@ -42,7 +43,7 @@ const loginUser = async () => {
 <div class="d-flex flex-column justify-content-center align-items-center mt-5">
   <div class="d-flex flex-column">
     <input class="form-control m-2" type="text" placeholder="username" v-model="userName">
-    <input class="form-control m-2" type="text" placeholder="password" v-model="userPassword" >
+    <input class="form-control m-2" type="password" placeholder="password" v-model="userPassword" >
     <button
         class="btn btn-dark btn-lg m-3"
         @click="() => loginUser()"
