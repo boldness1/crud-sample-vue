@@ -21,7 +21,7 @@ app.use(router)
 
 const {user} = useAuthStore()
 
-Api.init(import.meta.env.VITE_API_URL)
+Api.init('/:3001')
 Api.setToken(user.token)
 
 app.mount('#app')
